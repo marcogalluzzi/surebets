@@ -7,6 +7,8 @@ It's a very short JAVA program that does the work by:
 * Parsing the data to extract relevant information
 * Calculate the list of soccer matches with Sure Bets from the extracted information
 
+**WARNING!** Be careful executing this program, it's scraping a website and programming repeated executions could affect the target website performance.
+
 ## Technology
 
 It's a `JAVA 8` project using `maven` and the following library for HTML parsing: `jsoup`.
