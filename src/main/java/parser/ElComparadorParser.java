@@ -19,7 +19,8 @@ public class ElComparadorParser extends SportsbookWebParser {
     private final DateTimeFormatter URL_DATE_FORMAT = DateTimeFormatter.ofPattern("yyyy-MM-dd");
 
     public ElComparadorParser() {
-        bettingHouses = new String[]{"bet365", "bwin", "W.HILL", "Interw.", "888sport", "MARCA", "SPORTIUM", "betfair"};
+        // This list should have the same order of the table header in the web page www.elcomparador.com
+        bettingHouses = new String[]{"bet365", "bwin", "W.HILL", "Interw.", "888sport", "MARCA", "betfair"};
         baseURL = "http://www.elcomparador.com/html/contenido/mas_partidos.php?deporte=1&fecha=%s&offset=%d";
     }
 
@@ -90,7 +91,7 @@ public class ElComparadorParser extends SportsbookWebParser {
 
                 Elements filasCuotas = content.select("div#contenedor_cuotas").select("div#fila_cuotas");
 
-                SimpleBet[] simpleBets = new SimpleBet[7];
+                SimpleBet[] simpleBets = new SimpleBet[bettingHouses.length];
 
                 for (int i = 0; i < simpleBets.length; i++) {
                     simpleBets[i] = new SimpleBet();
@@ -101,7 +102,7 @@ public class ElComparadorParser extends SportsbookWebParser {
                     String cellClass = ((i & 1) == 0) ? ".impar" : ".par";
                     Elements filaCuotas = filasCuotas.get(i).select("div#celda_cuotas" + cellClass);
 
-                    for (int j = 0; j < 7; j++) {
+                    for (int j = 0; j < simpleBets.length; j++) {
                         Element cuotaElement = filaCuotas.get(j).selectFirst("a");
 
                         simpleBets[j].addOdd((cuotaElement == null) ? 0.0 : Double.parseDouble(cuotaElement.text()));
