@@ -55,7 +55,7 @@ Then you will get the list of Sure Bets for the upcoming soccer matches, ordered
 ```
 
 The final tabulated information shows the following data on each column:
-1. Day of soccer match
+1. Day of soccer match, with format "dd-MM-yyyy"
 2. League or tournament
 3. First soccer team
 4. Second soccer team
